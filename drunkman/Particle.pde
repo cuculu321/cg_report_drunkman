@@ -53,6 +53,6 @@ class Particle {
   public void update() {
     lifespan = lifespan - 1;
     velocity.add(gravity);
-    part.translate(velocity.x, velocity.y);
+    part.translate(velocity.x/2, velocity.y);
   }
 }
