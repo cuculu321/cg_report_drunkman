@@ -22,7 +22,7 @@ class Particle {
     part.vertex(-partSize/2, +partSize/2, 0, sprite.height);
     part.endShape();
     
-    rebirth(width/2,height/2);
+    rebirth(400,700);
     lifespan = random(255);
   }
 
