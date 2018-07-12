@@ -11,6 +11,7 @@ PImage sprite;
 
 float angleX;
 float angleY;
+int drunk_level;
 
 void setup(){
   size(800,800,P3D);
@@ -30,25 +31,27 @@ void draw(){
   ambientLight(100, 100, 100); 
   lightSpecular(50, 0, 0);
   directionalLight(255, 255, 255, -1, 1, -1);
-  timer++;
   
-  if(200 <= timer && timer <= 260){
-    ps.setEmitter(400,600);
- }
-  if(240 <= timer && timer <=310){
-    ps_mid.setEmitter(400,600);
-  }
-  if(290 <= timer && timer <=360){
-    ps_few.setEmitter(400,600);
-  }
-  if(340 <= timer && timer <=400){
-    ps_last.setEmitter(400,600);
-  }
-  if(timer >=500){
-    timer = 0;
+  if(drunk_level >= 300){
+    timer++;
+    if(timer <= 60){
+      ps.setEmitter(400,600);
+   }
+    if(40 <= timer && timer <=110){
+      ps_mid.setEmitter(400,600);
+    }
+    if(190 <= timer && timer <=160){
+      ps_few.setEmitter(400,600);
+    }
+    if(140 <= timer && timer <=200){
+      ps_last.setEmitter(400,600);
+    }
+    if(timer >=300){
+      timer = 0;
+      drunk_level = 0;
+    }
   }
   //吐瀉物の描画
-  /*
   ps.update();
   ps.display();
   ps_mid.update();
@@ -57,8 +60,7 @@ void draw(){
   ps_few.display();
   ps_last.update();
   ps_last.display();
-  */
-
+  
  //マウスの方向を取得する
  angleX = 10*atan2(height/2, mouseY);
  angleY = -10*atan2(width/2, mouseX);
@@ -94,8 +96,15 @@ void draw(){
   //ウイスキー
   pushMatrix();
   translate(600,400,100);
-  rotateY(angleX);    //Y軸に対してマウスのX軸の動きによって角度を変える 
-  rotateX(angleY);  
+  rotateY(angleY);    //Y軸に対してマウスのX軸の動きによって角度を変える 
+  rotateX(angleX);
   wisky();
   popMatrix();
+  
+  println(drunk_level);
+  if(8.4 <= angleX && angleX <= 8.7){
+    if(-5.3 <= angleY && angleY <= -4.6){
+      drunk_level++;
+    }
+  }
 }

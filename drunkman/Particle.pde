@@ -37,7 +37,7 @@ class Particle {
     velocity.mult(speed);
     lifespan = 255;   
     part.resetMatrix();
-    part.translate(x, y); 
+    part.translate(x, y,100); 
     part.setTint(color(random(150,200),random(140,190),random(0,50)));
   }
   
