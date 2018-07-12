@@ -27,6 +27,7 @@ void draw(){
   background(60,60,60);
   lights();
   timer++;
+  
   if(200 <= timer && timer <= 260){
     ps.setEmitter(400,600);
  }
@@ -42,7 +43,7 @@ void draw(){
   if(timer >=500){
     timer = 0;
   }
-  
+  //吐瀉物の描画
   ps.update();
   ps.display();
   ps_mid.update();
@@ -52,16 +53,17 @@ void draw(){
   ps_last.update();
   ps_last.display();
 
+  //下顎
   pushMatrix(); 
   translate(400, 500+timer);
    lower_mouse();
   popMatrix();
-  
+  //上顎
   pushMatrix();
    translate(400,500);
    upper_mouse();
   popMatrix();
-  
+  //ウイスキー
   pushMatrix();
   translate(600,400);
   rotateY(radians(mouseX));    //Y軸に対してマウスのX軸の動きによって角度を変える
