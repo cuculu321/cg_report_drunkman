@@ -94,8 +94,8 @@ void draw(){
   //ウイスキー
   pushMatrix();
   translate(600,400,100);
-  rotateY(radians(mouseX));    //Y軸に対してマウスのX軸の動きによって角度を変える
-  rotateX(radians(mouseY));  
+  rotateY(angleX);    //Y軸に対してマウスのX軸の動きによって角度を変える 
+  rotateX(angleY);  
   wisky();
   popMatrix();
 }
