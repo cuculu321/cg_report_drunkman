@@ -29,7 +29,6 @@ class ParticleSystem {
   }
 
   void display() {
-
     shape(particleShape);
   }
 }

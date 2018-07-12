@@ -22,7 +22,7 @@ class Particle {
     part.vertex(-partSize/2, +partSize/2, 0, sprite.height);
     part.endShape();
     
-    rebirth(width/2,height/2);
+    rebirth(1000,1000);
     lifespan = random(255);
   }
 
@@ -53,6 +53,6 @@ class Particle {
   public void update() {
     lifespan = lifespan - 1;
     velocity.add(gravity);
-    part.translate(velocity.x, velocity.y);
+    part.translate(velocity.x/3, velocity.y);
   }
 }
