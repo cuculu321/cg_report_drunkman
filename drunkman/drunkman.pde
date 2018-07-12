@@ -85,7 +85,11 @@ void draw(){
 
   //下顎
   pushMatrix(); 
-  translate(400, 500+timer);
+  if(timer <= 100){
+    translate(400, 500+timer);
+  }else{
+    translate(400,100);
+  }
    lower_mouse();
   popMatrix();
   //上顎
