@@ -9,6 +9,9 @@ ParticleSystem ps_few;
 ParticleSystem ps_last;
 PImage sprite;
 
+Particle_liquid_System wisky_liquid;
+PImage liquid;
+
 float angleX;
 float angleY;
 int drunk_level;
@@ -24,6 +27,8 @@ void setup(){
   ps_mid = new ParticleSystem(1000);
   ps_few = new ParticleSystem(500);
   ps_last = new ParticleSystem(100);
+  liquid = loadImage("shizuku.png");
+  wisky_liquid = new Particle_liquid_System(500);
   
   //hint(DISABLE_DEPTH_MASK);
 }
@@ -93,6 +98,7 @@ void draw(){
   }
    lower_mouse();
   popMatrix();
+  
   //上顎
   pushMatrix();
    translate(400,500);
@@ -116,6 +122,11 @@ void draw(){
   if(8 <= angleX && angleX <= 8.7){
     if(-5.3 <= angleY && angleY <= -4.6){
       drunk_level++;
+      if(drunk_level < 300){
+        wisky_liquid.setEmitter(500,450);
+         wisky_liquid.update();
+         wisky_liquid.display();
+      }
     }
   }
   
