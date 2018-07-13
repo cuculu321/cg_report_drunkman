@@ -12,6 +12,8 @@ PImage sprite;
 float angleX;
 float angleY;
 int drunk_level;
+int eye_rotate = 0;
+int time;
 
 void setup(){
   size(800,800,P3D);
@@ -27,6 +29,7 @@ void setup(){
 }
 
 void draw(){
+  time++;
   background(60,60,60);
   ambientLight(100, 100, 100); 
   lightSpecular(50, 0, 0);
@@ -68,9 +71,8 @@ void draw(){
  //左目
  pushMatrix();
  translate(300, 300, 0);
- //マウスの方向を向く
- rotateX(angleX);
- rotateY(angleY);
+ //drunk_levelごとに加速しながら目を回す
+ rotateY(eye_rotate*drunk_level*0.01);
  //目の描画
  makeEyesObj();
  popMatrix();
@@ -78,8 +80,7 @@ void draw(){
  //右目
  pushMatrix();
  translate(500, 300, 0);
- rotateX(angleX);
- rotateY(angleY);
+  rotateY(-eye_rotate*drunk_level*0.01);
  makeEyesObj();
  popMatrix();
 
@@ -88,7 +89,7 @@ void draw(){
   if(timer <= 100){
     translate(400, 500+timer);
   }else{
-    translate(400,100);
+    translate(400,600);
   }
    lower_mouse();
   popMatrix();
@@ -105,10 +106,17 @@ void draw(){
   wisky();
   popMatrix();
   
-  println(drunk_level);
-  if(8.4 <= angleX && angleX <= 8.7){
+  if(drunk_level > 1){
+    if(time%10 == 1){
+      eye_rotate += 1;
+    }
+  }
+  
+  //特定の角度でdrunk_levelを高める
+  if(8 <= angleX && angleX <= 8.7){
     if(-5.3 <= angleY && angleY <= -4.6){
       drunk_level++;
     }
   }
+  
 }
